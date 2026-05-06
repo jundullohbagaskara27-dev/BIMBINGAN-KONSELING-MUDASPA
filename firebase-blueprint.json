@@ -1,0 +1,106 @@
+{
+  "entities": {
+    "Siswa": {
+      "title": "Siswa",
+      "description": "Data identitas siswa",
+      "type": "object",
+      "properties": {
+        "nama": { "type": "string" },
+        "nisn": { "type": "string" },
+        "kelas": { "type": "string" },
+        "jk": { "type": "string", "enum": ["Laki-laki", "Perempuan"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["nama", "nisn", "kelas", "jk"]
+    },
+    "Konseling": {
+      "title": "Konseling",
+      "description": "Catatan sesi konseling",
+      "type": "object",
+      "properties": {
+        "siswaId": { "type": "string" },
+        "tanggal": { "type": "string", "format": "date-time" },
+        "layanan": { "type": "string" },
+        "guru": { "type": "string" },
+        "keterangan": { "type": "string" },
+        "tindaklanjut": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["siswaId", "tanggal", "layanan", "guru", "keterangan"]
+    },
+    "HomeVisit": {
+      "title": "Home Visit",
+      "description": "Catatan kunjungan rumah",
+      "type": "object",
+      "properties": {
+        "siswaId": { "type": "string" },
+        "tanggal": { "type": "string", "format": "date-time" },
+        "layanan": { "type": "string" },
+        "guru": { "type": "string" },
+        "keterangan": { "type": "string" },
+        "tindaklanjut": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["siswaId", "tanggal", "layanan", "guru", "keterangan"]
+    },
+    "Pelanggaran": {
+      "title": "Pelanggaran",
+      "description": "Catatan pelanggaran siswa",
+      "type": "object",
+      "properties": {
+        "siswaId": { "type": "string" },
+        "tanggal": { "type": "string", "format": "date-time" },
+        "jenis": { "type": "string" },
+        "keterangan": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["siswaId", "tanggal", "jenis"]
+    },
+    "Keterlambatan": {
+      "title": "Keterlambatan",
+      "description": "Catatan keterlambatan harian",
+      "type": "object",
+      "properties": {
+        "siswaId": { "type": "string" },
+        "tanggal": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["siswaId", "tanggal"]
+    },
+    "Settings": {
+      "title": "Settings",
+      "description": "Konfigurasi aplikasi",
+      "type": "object",
+      "properties": {
+        "guru1_nama": { "type": "string" },
+        "guru2_nama": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "siswa": {
+      "schema": "Siswa",
+      "description": "Koleksi data siswa"
+    },
+    "konseling": {
+      "schema": "Konseling",
+      "description": "Koleksi data konseling"
+    },
+    "homevisit": {
+      "schema": "HomeVisit",
+      "description": "Koleksi data home visit"
+    },
+    "pelanggaran": {
+      "schema": "Pelanggaran",
+      "description": "Koleksi data pelanggaran"
+    },
+    "keterlambatan": {
+      "schema": "Keterlambatan",
+      "description": "Koleksi data keterlambatan"
+    },
+    "settings": {
+      "schema": "Settings",
+      "description": "Koleksi pengaturan aplikasi"
+    }
+  }
+}

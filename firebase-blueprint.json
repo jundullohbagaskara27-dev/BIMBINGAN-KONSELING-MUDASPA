@@ -6,12 +6,11 @@
       "type": "object",
       "properties": {
         "nama": { "type": "string" },
-        "nisn": { "type": "string" },
         "kelas": { "type": "string" },
         "jk": { "type": "string", "enum": ["Laki-laki", "Perempuan"] },
         "createdAt": { "type": "string", "format": "date-time" }
       },
-      "required": ["nama", "nisn", "kelas", "jk"]
+      "required": ["nama", "kelas", "jk"]
     },
     "Konseling": {
       "title": "Konseling",
@@ -39,6 +38,11 @@
         "guru": { "type": "string" },
         "keterangan": { "type": "string" },
         "tindaklanjut": { "type": "string" },
+        "foto": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Dokumentasi foto kunjungan rumah (base64 compressed)"
+        },
         "createdAt": { "type": "string", "format": "date-time" }
       },
       "required": ["siswaId", "tanggal", "layanan", "guru", "keterangan"]
@@ -72,8 +76,7 @@
       "description": "Konfigurasi aplikasi",
       "type": "object",
       "properties": {
-        "guru1_nama": { "type": "string" },
-        "guru2_nama": { "type": "string" }
+        "guru_nama": { "type": "string" }
       }
     }
   },

@@ -34,19 +34,12 @@ interface AnalisisViewProps {
 }
 
 export default function AnalisisView({ siswa, konseling, homeVisit, pelanggaran, keterlambatan, settings }: AnalisisViewProps) {
-  // 1. Analisis Per Guru (Konseling + Home Visit)
-  const guru1Stats = {
-    konseling: konseling.filter(k => k.guru === settings.guru1_nama).length,
-    homevisit: homeVisit.filter(hv => hv.guru === settings.guru1_nama).length,
-  };
-  const guru2Stats = {
-    konseling: konseling.filter(k => k.guru === settings.guru2_nama).length,
-    homevisit: homeVisit.filter(hv => hv.guru === settings.guru2_nama).length,
-  };
+  const activeGuru = settings.guru_nama || settings.guru1_nama || 'Jundi Jundulloh, S.Pd';
 
-  const guruPieData = [
-    { name: settings.guru1_nama, value: guru1Stats.konseling + guru1Stats.homevisit, color: '#6366f1' },
-    { name: settings.guru2_nama, value: guru2Stats.konseling + guru2Stats.homevisit, color: '#8b5cf6' },
+  // 1. Aktivitas Bimbingan Guru BK (Konseling vs Home Visit)
+  const aktivitasGuruData = [
+    { name: 'Konseling', value: konseling.length, color: '#3b82f6' },
+    { name: 'Home Visit', value: homeVisit.length, color: '#10b981' },
   ].filter(d => d.value > 0);
 
   // 2. Analisis Layanan Konseling
@@ -128,33 +121,42 @@ export default function AnalisisView({ siswa, konseling, homeVisit, pelanggaran,
       </div>
 
       <div className="grid lg:grid-cols-2 gap-8">
-        {/* Statistik Guru */}
+        {/* Aktivitas Guru BK */}
         <div className="bg-white p-8 rounded-2xl shadow-xs border border-slate-200">
-           <div className="flex items-center justify-between mb-8">
-            <h2 className="font-bold text-lg text-slate-800">Statistik Guru</h2>
+           <div className="flex items-center justify-between mb-6">
+            <div>
+              <h2 className="font-bold text-lg text-slate-800">Aktivitas Bimbingan</h2>
+              <p className="text-xs text-indigo-600 font-bold">{activeGuru}</p>
+            </div>
             <PieChartIcon className="w-5 h-5 text-indigo-400" />
           </div>
           <div className="h-64">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={guruPieData}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={60}
-                  outerRadius={80}
-                  paddingAngle={5}
-                  dataKey="value"
-                  label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                >
-                  {guruPieData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Pie>
-                <Tooltip />
-                <Legend verticalAlign="bottom" height={36}/>
-              </PieChart>
-            </ResponsiveContainer>
+            {aktivitasGuruData.length > 0 ? (
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={aktivitasGuruData}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={60}
+                    outerRadius={80}
+                    paddingAngle={5}
+                    dataKey="value"
+                    label={({ name, value }) => `${name}: ${value}`}
+                  >
+                    {aktivitasGuruData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                  <Legend verticalAlign="bottom" height={36}/>
+                </PieChart>
+              </ResponsiveContainer>
+            ) : (
+              <div className="h-full flex items-center justify-center text-slate-400 text-sm italic">
+                Belum ada aktivitas bimbingan tercatat
+              </div>
+            )}
           </div>
         </div>
 

@@ -34,8 +34,7 @@ export default function App() {
   const [pelanggaran, setPelanggaran] = useState<Pelanggaran[]>([]);
   const [keterlambatan, setKeterlambatan] = useState<Keterlambatan[]>([]);
   const [settings, setSettings] = useState<Settings>({
-    guru1_nama: 'Jundi Jundulloh',
-    guru2_nama: 'Reni Anggraeni'
+    guru_nama: 'Jundi Jundulloh, S.Pd'
   });
 
   useEffect(() => {
@@ -90,7 +89,12 @@ export default function App() {
     const unsubSettings = onSnapshot(doc(db, 'settings', 'config'), 
       (snapshot) => {
         if (snapshot.exists()) {
-          setSettings(snapshot.data() as Settings);
+          const data = snapshot.data();
+          setSettings({
+            guru_nama: data.guru_nama || data.guru1_nama || 'Jundi Jundulloh, S.Pd',
+            guru1_nama: data.guru1_nama,
+            guru2_nama: data.guru2_nama
+          });
         }
       }, 
       (error) => handleFirestoreError(error, OperationType.GET, 'settings/config')
@@ -163,7 +167,7 @@ export default function App() {
         </div>
         
         <footer className="bg-slate-800 text-slate-400 py-4 text-center text-xs">
-          © {new Date().getFullYear()} Jundi Jundulloh - BK SMA MUDASPA
+          © {new Date().getFullYear()} Jundi Jundulloh, S.Pd - BK SMA MUDASPA
         </footer>
       </main>
     </div>

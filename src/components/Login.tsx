@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Lock } from 'lucide-react';
+import BkLogo from './BkLogo.tsx';
 
 interface LoginProps {
   onLogin: () => void;
@@ -29,13 +29,13 @@ export default function Login({ onLogin }: LoginProps) {
       >
         <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-white/20">
           <div className="p-8">
-            <div className="text-center mb-10">
-              <div className="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-white shadow-xl">
-                <Lock className="text-indigo-600 w-8 h-8" />
+            <div className="text-center mb-8">
+              <div className="w-24 h-24 mx-auto mb-4 flex items-center justify-center">
+                <BkLogo className="w-24 h-24 drop-shadow-lg" />
               </div>
-              <h1 className="text-3xl font-bold text-slate-900 mb-1">BK MUDASPA</h1>
-              <p className="text-indigo-600 font-semibold text-sm">Bimbingan Konseling</p>
-              <p className="text-slate-500 text-xs">SMA MUHAMMADIYYAH SINGAPARNA</p>
+              <h1 className="text-3xl font-black text-slate-900 tracking-tight mb-1">BK MUDASPA</h1>
+              <p className="text-indigo-600 font-bold text-sm tracking-wide">BIMBINGAN & KONSELING</p>
+              <p className="text-slate-500 text-xs font-medium mt-0.5">SMA MUHAMMADIYYAH SINGAPARNA</p>
             </div>
 
             <form onSubmit={handleLogin} className="space-y-6">

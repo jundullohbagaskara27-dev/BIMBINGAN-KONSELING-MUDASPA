@@ -12,7 +12,7 @@ import {
   X,
   FileText
 } from 'lucide-react';
-import { Siswa, Keterlambatan } from '../types.ts';
+import { Siswa, Keterlambatan, DAFTAR_KELAS_MUDASPA } from '../types.ts';
 import { 
   collection, 
   addDoc, 
@@ -89,7 +89,6 @@ export default function KeterlambatanView({ keterlambatan, siswa }: Keterlambata
     try {
       const docRef = await addDoc(collection(db, 'siswa'), {
         nama: newSiswaNama,
-        nisn: '',
         kelas: newSiswaKelas,
         jk: 'Laki-laki',
         createdAt: new Date().toISOString()
@@ -127,7 +126,7 @@ export default function KeterlambatanView({ keterlambatan, siswa }: Keterlambata
 
   const [selectedKelas, setSelectedKelas] = useState<string>('Semua');
 
-  const classes = Array.from(new Set(siswa.map(s => s.kelas))).sort();
+  const classes = Array.from(new Set([...DAFTAR_KELAS_MUDASPA, ...siswa.map(s => s.kelas)])).filter(Boolean).sort();
 
   const filteredKeterlambatan = keterlambatan.filter(k => {
     const targetSiswa = siswa.find(s => s.id === k.siswaId);
@@ -176,12 +175,16 @@ export default function KeterlambatanView({ keterlambatan, siswa }: Keterlambata
                 placeholder="Nama Lengkap Siswa..."
                 value={newSiswaNama} onChange={e => setNewSiswaNama(e.target.value)}
                 className="p-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium"
+                required
               />
-              <input 
-                placeholder="Kelas..."
+              <select 
                 value={newSiswaKelas} onChange={e => setNewSiswaKelas(e.target.value)}
                 className="p-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium"
-              />
+                required
+              >
+                <option value="">-- Pilih Kelas --</option>
+                {DAFTAR_KELAS_MUDASPA.map(c => <option key={c} value={c}>{c}</option>)}
+              </select>
               <button type="submit" className="bg-indigo-600 text-white font-bold rounded-xl py-3 shadow-lg shadow-indigo-100">Simpan & Pilih</button>
             </form>
           ) : (

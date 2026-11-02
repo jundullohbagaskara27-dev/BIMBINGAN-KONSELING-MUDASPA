@@ -13,6 +13,7 @@ import {
   FolderOpen
 } from 'lucide-react';
 import { cn } from '../lib/utils.ts';
+import BkLogo from './BkLogo.tsx';
 
 type Page = 'dashboard' | 'siswa' | 'pelanggaran' | 'konseling' | 'homevisit' | 'keterlambatan' | 'pengaturan' | 'analisis' | 'tindaklanjut';
 
@@ -41,9 +42,12 @@ export default function Sidebar({ currentPage, onNavigate, onLogout }: SidebarPr
 
   return (
     <aside className="w-20 lg:w-72 bg-indigo-900 h-screen flex flex-col shadow-2xl transition-all duration-300">
-      <div className="p-6 border-b border-indigo-800 hidden lg:block">
-        <h2 className="font-black text-2xl text-white tracking-tight">BK MUDASPA</h2>
-        <p className="text-indigo-300 text-[10px] font-bold uppercase tracking-widest mt-1">Sistem Bimbingan Konseling</p>
+      <div className="p-3.5 lg:p-5 border-b border-indigo-800 flex items-center gap-3 justify-center lg:justify-start">
+        <BkLogo className="w-10 h-10 shrink-0 drop-shadow-md" />
+        <div className="hidden lg:block">
+          <h2 className="font-black text-xl text-white tracking-tight leading-tight">BK MUDASPA</h2>
+          <p className="text-indigo-300 text-[10px] font-bold uppercase tracking-widest mt-0.5">Bimbingan & Konseling</p>
+        </div>
       </div>
 
       <nav className="flex-1 p-3 lg:p-4 space-y-2 overflow-y-auto">

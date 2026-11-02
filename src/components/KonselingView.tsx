@@ -36,10 +36,11 @@ export default function KonselingView({ konseling, siswa, settings }: KonselingV
   const [editingKonseling, setEditingKonseling] = useState<Konseling | null>(null);
 
   // Form State
+  const activeGuru = settings.guru_nama || settings.guru1_nama || 'Jundi Jundulloh, S.Pd';
   const [siswaId, setSiswaId] = useState('');
   const [tanggal, setTanggal] = useState(format(new Date(), 'yyyy-MM-dd'));
   const [layanan, setLayanan] = useState('');
-  const [guru, setGuru] = useState('');
+  const [guru, setGuru] = useState(activeGuru);
   const [keterangan, setKeterangan] = useState('');
   const [tindaklanjut, setTindaklanjut] = useState('');
 
@@ -50,7 +51,7 @@ export default function KonselingView({ konseling, siswa, settings }: KonselingV
     setSiswaId('');
     setTanggal(format(new Date(), 'yyyy-MM-dd'));
     setLayanan('');
-    setGuru('');
+    setGuru(activeGuru);
     setKeterangan('');
     setTindaklanjut('');
     setEditingKonseling(null);
@@ -198,14 +199,12 @@ export default function KonselingView({ konseling, siswa, settings }: KonselingV
             </div>
             <div className="space-y-1">
               <label className="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Guru Pembimbing</label>
-              <select 
-                value={guru} onChange={(e) => setGuru(e.target.value)}
-                className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all font-medium"
-              >
-                <option value="">-- Pilih Guru --</option>
-                <option>{settings.guru1_nama}</option>
-                <option>{settings.guru2_nama}</option>
-              </select>
+              <input 
+                type="text"
+                readOnly
+                value={guru}
+                className="w-full p-3 bg-slate-100 border border-slate-200 rounded-xl font-bold text-slate-700 cursor-not-allowed"
+              />
             </div>
             
             <div className="md:col-span-2 lg:col-span-3 space-y-1">

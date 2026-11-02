@@ -264,16 +264,16 @@ export default function SettingsView({
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-4 pt-2">
-            {/* Opsi 1: Proyek Lengkap */}
+          <div className="grid md:grid-cols-3 gap-4 pt-2">
+            {/* Opsi 1: Proyek Lengkap ZIP */}
             <div className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-indigo-400/50 transition-all flex flex-col justify-between">
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <h3 className="font-bold text-base text-white flex items-center gap-2">
-                    📦 Proyek Penuh (Full Project)
+                    📦 Proyek Penuh (ZIP)
                   </h3>
                   <span className="text-[10px] bg-emerald-500/20 text-emerald-300 font-bold px-2 py-0.5 rounded-md border border-emerald-500/30">
-                    Direkomendasikan
+                    Siap Pakai
                   </span>
                 </div>
                 <p className="text-xs text-slate-300 leading-relaxed">
@@ -286,33 +286,59 @@ export default function SettingsView({
                   download="bk-mudaspa-vscode-project.zip"
                   className="w-full inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-indigo-600/30 transition-all text-sm"
                 >
-                  <Download className="w-4 h-4" /> Unduh Proyek Lengkap (.ZIP)
+                  <Download className="w-4 h-4" /> Unduh File ZIP (.zip)
                 </a>
               </div>
             </div>
 
-            {/* Opsi 2: Modul Home Visit Foto Saja */}
+            {/* Opsi 2: Script Otomatis (setup-project.js) */}
             <div className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-indigo-400/50 transition-all flex flex-col justify-between">
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <h3 className="font-bold text-base text-white flex items-center gap-2">
-                    📸 Update Home Visit + Foto
+                    ⚡ Script Otomatis (.js)
                   </h3>
-                  <span className="text-[10px] bg-cyan-500/20 text-cyan-300 font-bold px-2 py-0.5 rounded-md border border-cyan-500/30">
-                    3 File Utama
+                  <span className="text-[10px] bg-amber-500/20 text-amber-300 font-bold px-2 py-0.5 rounded-md border border-amber-500/30">
+                    1 Perintah
                   </span>
                 </div>
                 <p className="text-xs text-slate-300 leading-relaxed">
-                  Hanya file fitur dokumentasi foto kunjungan rumah: <code className="text-indigo-300 font-mono text-[11px]">HomeVisitView.tsx</code>, <code className="text-indigo-300 font-mono text-[11px]">imageCompressor.ts</code>, dan <code className="text-indigo-300 font-mono text-[11px]">types.ts</code>.
+                  Cukup letakkan file ini di folder baru di komputer, jalankan <code className="text-amber-300 font-mono text-[11px]">node setup-project.js</code>, seluruh 33 file dan struktur folder akan otomatis terbuat 100%!
                 </p>
               </div>
               <div className="mt-5">
                 <a
-                  href="/homevisit-photo-update.zip"
-                  download="homevisit-photo-update.zip"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-indigo-300 border border-indigo-400/30 font-bold py-3 px-4 rounded-xl transition-all text-sm"
+                  href="/setup-project.js"
+                  download="setup-project.js"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-amber-600/30 transition-all text-sm"
                 >
-                  <Download className="w-4 h-4" /> Unduh Update Home Visit (.ZIP)
+                  <Download className="w-4 h-4" /> Unduh setup-project.js
+                </a>
+              </div>
+            </div>
+
+            {/* Opsi 3: Satu File Teks Lengkap */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-indigo-400/50 transition-all flex flex-col justify-between">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-bold text-base text-white flex items-center gap-2">
+                    📄 Berkas Kode Teks (.txt)
+                  </h3>
+                  <span className="text-[10px] bg-cyan-500/20 text-cyan-300 font-bold px-2 py-0.5 rounded-md border border-cyan-500/30">
+                    Semua Kodingan
+                  </span>
+                </div>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Satu berkas dokumen teks lengkap berisi seluruh file kodingan proyek dengan header pemisah yang rapi. Bisa langsung dibuka di VS Code atau Notepad.
+                </p>
+              </div>
+              <div className="mt-5">
+                <a
+                  href="/SEMUA_KODE_PROYEK.txt"
+                  download="SEMUA_KODE_PROYEK.txt"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-400/30 font-bold py-3 px-4 rounded-xl transition-all text-sm"
+                >
+                  <Download className="w-4 h-4" /> Unduh SEMUA_KODE_PROYEK.txt
                 </a>
               </div>
             </div>
